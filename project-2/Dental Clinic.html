@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ORALIS — Modern Dental Clinic</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue: #1677ff;
+            --blue-dark: #0955c9;
+            --navy: #10233f;
+            --text: #26364d;
+            --muted: #728198;
+            --bg: #d1e0ee;
+            --white: #d2deff;
+            --border: #c1d2e6;
+            --soft-blue: #bcddff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Manrope", sans-serif;
+            color: var(--navy);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        /* NAV */
+
+        .nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1180px, calc(100% - 40px));
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 26px;
+            background: rgba(255, 255, 255, .88);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(228, 235, 243, .9);
+            border-radius: 18px;
+            z-index: 100;
+            box-shadow: 0 10px 40px rgba(27, 66, 110, .08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-family: "Manrope", sans-serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: var(--blue);
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 8px 20px rgba(22, 119, 255, .25);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            color: #53647a;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            transition: .25s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue);
+        }
+
+        .nav-btn {
+            padding: 12px 20px;
+            border-radius: 11px;
+            background: var(--navy);
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .25s;
+        }
+
+        .nav-btn:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .menu-btn {
+            display: none;
+            border: 0;
+            background: transparent;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 850px;
+            padding: 170px 7% 100px;
+            display: flex;
+            align-items: center;
+            background:
+                radial-gradient(circle at 85% 20%, #e3f2ff 0, transparent 30%),
+                linear-gradient(135deg, #ffffff 0%, #f4f9fe 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #d9eaff;
+            border-radius: 50%;
+            right: -180px;
+            bottom: -180px;
+        }
+
+        .hero-content {
+            width: 52%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            background: var(--soft-blue);
+            color: var(--blue);
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .eyebrow span {
+            width: 7px;
+            height: 7px;
+            background: #39c77a;
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 6vw, 78px);
+            line-height: 1.02;
+            letter-spacing: -4px;
+            max-width: 750px;
+            margin-bottom: 26px;
+        }
+
+        .hero h1 strong {
+            color: var(--blue);
+        }
+
+        .hero-text {
+            max-width: 580px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .primary-btn {
+            padding: 15px 24px;
+            border-radius: 12px;
+            background: var(--blue);
+            color: white;
+            font-weight: 700;
+            border: 0;
+            cursor: pointer;
+            box-shadow: 0 12px 25px rgba(22, 119, 255, .2);
+            transition: .25s;
+        }
+
+        .primary-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            padding: 14px 22px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: white;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* HERO VISUAL */
+
+        .hero-visual {
+            position: absolute;
+            right: 6%;
+            width: 43%;
+            max-width: 610px;
+            height: 590px;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 30px;
+            width: 80%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 35px;
+            box-shadow: 0 30px 80px rgba(24, 62, 102, .18);
+        }
+
+        .hero-card {
+            position: absolute;
+            left: 0;
+            bottom: 30px;
+            width: 230px;
+            padding: 22px;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(15px);
+            border: 1px solid #e5edf5;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(24, 62, 102, .13);
+        }
+
+        .doctor {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 17px;
+        }
+
+        .doctor img {
+            width: 47px;
+            height: 47px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .doctor strong {
+            display: block;
+            color: var(--navy);
+            font-size: 13px;
+        }
+
+        .doctor span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .stars {
+            color: #ffb52e;
+            font-size: 14px;
+        }
+
+        /* STATS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1100px;
+            margin: -50px auto 0;
+            position: relative;
+            z-index: 5;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(25, 65, 105, .08);
+            overflow: hidden;
+        }
+
+        .stat {
+            padding: 28px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child {
+            border: 0;
+        }
+
+        .stat strong {
+            display: block;
+            font-family: "Manrope";
+            font-size: 28px;
+            color: var(--navy);
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* SERVICES */
+
+        .section {
+            padding: 120px 7%;
+        }
+
+        .section-head {
+            max-width: 650px;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            color: var(--blue);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 13px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(35px, 4vw, 53px);
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 17px;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .services {
+            background: var(--bg);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            padding: 34px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            transition: .3s;
+        }
+
+        .service:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 50px rgba(25, 65, 105, .1);
+            border-color: #cfe4fa;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            display: grid;
+            place-items: center;
+            background: var(--soft-blue);
+            color: var(--blue);
+            border-radius: 15px;
+            font-size: 23px;
+            margin-bottom: 24px;
+        }
+
+        .service h3 {
+            font-size: 19px;
+            margin-bottom: 11px;
+        }
+
+        .service p {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ABOUT */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 30px;
+        }
+
+        .experience {
+            position: absolute;
+            right: -25px;
+            bottom: 35px;
+            background: var(--blue);
+            color: white;
+            padding: 23px;
+            border-radius: 18px;
+            width: 170px;
+            box-shadow: 0 20px 40px rgba(22,119,255,.25);
+        }
+
+        .experience strong {
+            display: block;
+            font-family: "Manrope";
+            font-size: 34px;
+        }
+
+        .experience span {
+            font-size: 12px;
+            opacity: .85;
+        }
+
+        .about-content h2 {
+            font-size: 48px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .about-content > p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .checks {
+            display: grid;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+
+        .check {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .check i {
+            width: 23px;
+            height: 23px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            background: #e8f8ef;
+            color: #29a968;
+            font-size: 12px;
+            font-style: normal;
+        }
+
+        /* DOCTORS */
+
+        .doctors {
+            background: #f7fbff;
+        }
+
+        .doctor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .doctor-card img {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+        }
+
+        .doctor-info {
+            padding: 24px;
+        }
+
+        .doctor-info h3 {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        .doctor-info p {
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* BOOKING */
+
+        .booking {
+            padding: 100px 7%;
+        }
+
+        .booking-box {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            background: var(--navy);
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .booking-info {
+            padding: 55px;
+            color: white;
+        }
+
+        .booking-info h2 {
+            color: white;
+            font-size: 42px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .booking-info p {
+            color: #aebed2;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .contact-item {
+            margin-top: 30px;
+        }
+
+        .contact-item span {
+            display: block;
+            color: #8295ad;
+            font-size: 11px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item strong {
+            font-size: 14px;
+        }
+
+        .booking-form {
+            padding: 45px;
+            background: white;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748a;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 13px;
+            outline: none;
+            color: var(--text);
+            background: #fbfdff;
+        }
+
+        .field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--blue);
+        }
+
+        .form-submit {
+            margin-top: 20px;
+            width: 100%;
+            padding: 15px;
+            border: 0;
+            border-radius: 11px;
+            background: var(--blue);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 60px 7% 25px;
+            background: #f5f8fc;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            padding-bottom: 45px;
+        }
+
+        .footer-brand {
+            max-width: 320px;
+        }
+
+        .footer-brand p {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 70px;
+        }
+
+        .footer-col strong {
+            display: block;
+            color: var(--navy);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 11px;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: #8a98aa;
+            font-size: 11px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* REVEAL */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: .7s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .nav-links,
+            .nav-btn {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 150px;
+                padding-bottom: 80px;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 54px;
+            }
+
+            .stats {
+                margin: 0 20px;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat:nth-child(2) {
+                border-right: 0;
+            }
+
+            .stat:nth-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .service-grid,
+            .doctor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .about-image img {
+                height: 420px;
+            }
+
+            .booking-box {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .nav {
+                width: calc(100% - 24px);
+                top: 12px;
+            }
+
+            .hero {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .hero-text {
+                font-size: 15px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .section {
+                padding: 80px 24px;
+            }
+
+            .section-head h2,
+            .about-content h2 {
+                font-size: 36px;
+            }
+
+            .stats {
+                margin: 0 12px;
+            }
+
+            .stat {
+                padding: 22px 10px;
+            }
+
+            .booking {
+                padding: 70px 18px;
+            }
+
+            .booking-info,
+            .booking-form {
+                padding: 30px 24px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .footer-links {
+                gap: 35px;
+                flex-wrap: wrap;
+            }
+
+            .copyright {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+
+    <nav class="nav">
+
+        <a href="#" class="logo">
+            <span class="logo-mark">O</span>
+            ORALIS
+        </a>
+
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#booking">Contact</a>
+        </div>
+
+        <a href="#booking" class="nav-btn">
+            Book Appointment
+        </a>
+
+        <button class="menu-btn">
+            ☰
+        </button>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content reveal">
+
+            <div class="eyebrow">
+                <span></span>
+                Modern Dental Care
+            </div>
+
+            <h1>
+                A healthier smile starts <strong>here.</strong>
+            </h1>
+
+            <p class="hero-text">
+                Experience modern dentistry designed around you.
+                From preventive care to advanced cosmetic treatments,
+                we make every visit comfortable, clear and stress-free.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#booking" class="primary-btn">
+                    Book an Appointment
+                </a>
+
+                <a href="#services" class="secondary-btn">
+                    Explore Services
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <img
+                class="hero-image"
+                src="pic/dentist2.jfif"
+            >
+
+            <div class="hero-card">
+
+                <div class="doctor">
+
+                    <img
+                        src="pic/doctoy.jfif"
+                        alt="Doctor"
+                    >
+
+                    <div>
+                        <strong>Dr. Emily Carter</strong>
+                        <span>Lead Dentist</span>
+                    </div>
+
+                </div>
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <small style="color:#728198;">
+                    Trusted by 2,000+ patients
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <div class="stats reveal">
+
+        <div class="stat">
+            <strong>12+</strong>
+            <span>Years Experience</span>
+        </div>
+
+        <div class="stat">
+            <strong>2.4K</strong>
+            <span>Happy Patients</span>
+        </div>
+
+        <div class="stat">
+            <strong>98%</strong>
+            <span>Patient Satisfaction</span>
+        </div>
+
+        <div class="stat">
+            <strong>24/7</strong>
+            <span>Online Support</span>
+        </div>
+
+    </div>
+
+
+    <!-- SERVICES -->
+
+    <section class="section services" id="services">
+
+        <div class="section-head reveal">
+
+            <div class="section-label">
+                Our Services
+            </div>
+
+            <h2>
+                Complete care for your smile.
+            </h2>
+
+            <p>
+                Professional dental treatments using modern technology,
+                experienced specialists and a patient-first approach.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <div class="service reveal">
+                <div class="service-icon">✦</div>
+                <h3>Cosmetic Dentistry</h3>
+                <p>
+                    Transform your smile with professional whitening,
+                    veneers and personalized cosmetic treatments.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">⌁</div>
+                <h3>Dental Implants</h3>
+                <p>
+                    Reliable, natural-looking tooth replacement
+                    designed for long-term comfort and confidence.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">+</div>
+                <h3>General Dentistry</h3>
+                <p>
+                    Preventive checkups, cleanings and restorative
+                    treatments to keep your oral health on track.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">◈</div>
+                <h3>Orthodontics</h3>
+                <p>
+                    Modern alignment solutions designed to create
+                    healthier and more confident smiles.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">◉</div>
+                <h3>Teeth Whitening</h3>
+                <p>
+                    Professional whitening treatments for a brighter,
+                    cleaner and naturally confident smile.
+                </p>
+            </div>
+
+            <div class="service reveal">
+                <div class="service-icon">◇</div>
+                <h3>Emergency Care</h3>
+                <p>
+                    Fast professional support when unexpected dental
+                    problems need immediate attention.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="section about" id="about">
+
+        <div class="about-image reveal">
+
+            <img
+                src="pic/dentist2.jfif"
+                alt="Dental treatment"
+            >
+
+            <div class="experience">
+                <strong>12+</strong>
+                <span>Years of trusted dental experience</span>
+            </div>
+
+        </div>
+
+
+        <div class="about-content reveal">
+
+            <div class="section-label">
+                Why Oralis
+            </div>
+
+            <h2>
+                Dentistry built around people.
+            </h2>
+
+            <p>
+                We believe dental care should feel different.
+                Our clinic combines advanced technology with a calm,
+                welcoming environment where every patient receives
+                individual attention.
+            </p>
+
+            <div class="checks">
+
+                <div class="check">
+                    <i>✓</i>
+                    Experienced dental specialists
+                </div>
+
+                <div class="check">
+                    <i>✓</i>
+                    Modern digital technology
+                </div>
+
+                <div class="check">
+                    <i>✓</i>
+                    Transparent treatment plans
+                </div>
+
+                <div class="check">
+                    <i>✓</i>
+                    Comfortable patient experience
+                </div>
+
+            </div>
+
+            <a href="#booking" class="primary-btn">
+                Meet Our Team
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- DOCTORS -->
+
+    <section class="section doctors" id="doctors">
+
+        <div class="section-head reveal">
+
+            <div class="section-label">
+                Our Specialists
+            </div>
+
+            <h2>
+                Meet the people behind your smile.
+            </h2>
+
+            <p>
+                A multidisciplinary team focused on delivering
+                precise, comfortable and personalized care.
+            </p>
+
+        </div>
+
+
+        <div class="doctor-grid">
+
+            <div class="doctor-card reveal">
+
+                <img
+                    src="pic/doctor 2.jfif"
+                    alt="Dr. James Wilson"
+                >
+
+                <div class="doctor-info">
+                    <h3>Dr. James Wilson</h3>
+                    <p>Implant & Restorative Dentistry</p>
+                </div>
+
+            </div>
+
+
+            <div class="doctor-card reveal">
+
+                <img
+                    src="pic/doctor 1.jfif"
+                    alt="Dr. Sarah Miller"
+                >
+
+                <div class="doctor-info">
+                    <h3>Dr. Sarah Miller</h3>
+                    <p>Cosmetic Dentistry</p>
+                </div>
+
+            </div>
+
+
+            <div class="doctor-card reveal">
+
+                <img
+                    src="pic/doctor 3.jfif"
+                    alt="Dr. Michael Lee"
+                >
+
+                <div class="doctor-info">
+                    <h3>Dr. Michael Lee</h3>
+                    <p>Orthodontics</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- BOOKING -->
+
+    <section class="booking" id="booking">
+
+        <div class="booking-box reveal">
+
+            <div class="booking-info">
+
+                <h2>
+                    Your next smile starts with one appointment.
+                </h2>
+
+                <p>
+                    Tell us what you need and our team will get
+                    back to you with a suitable appointment time.
+                </p>
+
+                <div class="contact-item">
+                    <span>Call us</span>
+                    <strong>+1 555 284 0192</strong>
+                </div>
+
+                <div class="contact-item">
+                    <span>Email</span>
+                    <strong>hello@oralisclinic.com</strong>
+                </div>
+
+                <div class="contact-item">
+                    <span>Location</span>
+                    <strong>84 Madison Avenue, New York</strong>
+                </div>
+
+            </div>
+
+
+            <form class="booking-form" id="bookingForm">
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label>FULL NAME</label>
+                        <input
+                            type="text"
+                            placeholder="Your name"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>PHONE NUMBER</label>
+                        <input
+                            type="tel"
+                            placeholder="+1 555..."
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>EMAIL</label>
+                        <input
+                            type="email"
+                            placeholder="you@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label>SERVICE</label>
+
+                        <select required>
+                            <option value="">Choose a service</option>
+                            <option>General Dentistry</option>
+                            <option>Cosmetic Dentistry</option>
+                            <option>Dental Implants</option>
+                            <option>Orthodontics</option>
+                            <option>Teeth Whitening</option>
+                            <option>Emergency Care</option>
+                        </select>
+
+                    </div>
+
+                    <div class="field">
+                        <label>PREFERRED DATE</label>
+                        <input type="date" required>
+                    </div>
+
+                    <div class="field">
+                        <label>PREFERRED TIME</label>
+                        <input type="time">
+                    </div>
+
+                    <div class="field full">
+                        <label>MESSAGE</label>
+                        <textarea
+                            placeholder="Tell us briefly how we can help..."
+                        ></textarea>
+                    </div>
+
+                </div>
+
+                <button class="form-submit" type="submit">
+                    Request Appointment
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+
+                <a href="#" class="logo">
+                    <span class="logo-mark">O</span>
+                    ORALIS
+                </a>
+
+                <p>
+                    Modern dental care designed around your comfort,
+                    confidence and long-term oral health.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-col">
+
+                    <strong>Clinic</strong>
+
+                    <a href="#about">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#doctors">Our Doctors</a>
+
+                </div>
+
+                <div class="footer-col">
+
+                    <strong>Support</strong>
+
+                    <a href="#booking">Appointments</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy</a>
+
+                </div>
+
+                <div class="footer-col">
+
+                    <strong>Social</strong>
+
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">LinkedIn</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            <span>
+                © 2026 Oralis Dental Clinic
+            </span>
+
+            <span>
+                Designed & Developed with care
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        // Scroll reveal
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("active");
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+
+        // Appointment form
+
+        const bookingForm =
+            document.getElementById("bookingForm");
+
+        bookingForm.addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            const button =
+                bookingForm.querySelector("button");
+
+            button.textContent =
+                "Appointment Request Sent ✓";
+
+            button.style.background =
+                "#25a866";
+
+            setTimeout(() => {
+
+                button.textContent =
+                    "Request Appointment";
+
+                button.style.background =
+                    "";
+
+                bookingForm.reset();
+
+            }, 3000);
+
+        });
+
+
+        // Mobile menu
+
+        const menuBtn =
+            document.querySelector(".menu-btn");
+
+        const navLinks =
+            document.querySelector(".nav-links");
+
+        menuBtn.addEventListener("click", () => {
+
+            const visible =
+                navLinks.style.display === "flex";
+
+            navLinks.style.display =
+                visible ? "none" : "flex";
+
+            if (!visible) {
+
+                navLinks.style.position = "absolute";
+                navLinks.style.top = "78px";
+                navLinks.style.left = "0";
+                navLinks.style.right = "0";
+                navLinks.style.padding = "20px";
+                navLinks.style.flexDirection = "column";
+                navLinks.style.background = "white";
+                navLinks.style.borderRadius = "15px";
+                navLinks.style.boxShadow =
+                    "0 15px 40px rgba(20,50,90,.12)";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
