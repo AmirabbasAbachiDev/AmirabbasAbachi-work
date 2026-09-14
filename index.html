@@ -84,23 +84,57 @@
 
 <header class="header">
 
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <nav class="nav">
 
         <a href="#hero" class="logo">
             <span class="logo-symbol">A</span>
-            <span class="logo-text">AMIRABBAS</span>
+
+            <span class="logo-text-wrap">
+                <span class="logo-text">AMIRABBAS</span>
+                <span class="logo-sub">
+                    <i></i>
+                    AVAILABLE
+                </span>
+            </span>
         </a>
+
 
         <div class="nav-center">
-            <a href="#work">Work</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
+            <a href="#work" class="active">
+                <i></i>
+                Work
+            </a>
+            <a href="#skills">
+                <i></i>
+                Skills
+            </a>
+            <a href="#contact">
+                <i></i>
+                Contact
+            </a>
         </div>
 
-        <a href="#contact" class="nav-button">
-            Let's talk
-            <span>↗</span>
-        </a>
+        <div class="nav-right">
+
+            <span class="nav-status">
+                FOR WORK
+            </span>
+
+            <a href="#contact" class="nav-button">
+                Let's talk
+                <span>↗</span>
+            </a>
+
+            <button class="nav-mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
 
     </nav>
 
@@ -577,41 +611,68 @@
             I'm always open to interesting conversations.
         </p>
 
-        <a
-            href="mailto:your@email.com"
-            class="contact-button"
-        >
-            Start a conversation
-            <span>↗</span>
-        </a>
-
-        <div class="socials">
+        <div class="contact-grid">
 
             <a
-                href="https://github.com/yourusername"
+                href="https://t.me/amirabbasabachi_dev"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="contact-card telegram"
             >
-                GitHub
-                <span>↗</span>
+                <div class="contact-icon">✈</div>
+
+                <div class="contact-text">
+                    <strong>Telegram</strong>
+                    <span>@amirabbasabachi_dev</span>
+                </div>
+
+                <span class="contact-arrow">↗</span>
             </a>
 
             <a
-                href="https://linkedin.com/in/yourusername"
+                href="https://instagram.com/amirabbasabachi.dev"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="contact-card instagram"
             >
-                LinkedIn
-                <span>↗</span>
+                <div class="contact-icon">◉</div>
+
+                <div class="contact-text">
+                    <strong>Instagram</strong>
+                    <span>amirabbasabachi.dev</span>
+                </div>
+
+                <span class="contact-arrow">↗</span>
             </a>
 
             <a
-                href="https://t.me/yourusername"
+                href="mailto:amirabbasabachi.dev@gmail.com"
+                class="contact-card email"
+            >
+                <div class="contact-icon">✉</div>
+
+                <div class="contact-text">
+                    <strong>Email</strong>
+                    <span>amirabbasabachi.dev</span>
+                </div>
+
+                <span class="contact-arrow">↗</span>
+            </a>
+
+            <a
+                href="https://github.com/AmirabbasAbachiDev"
                 target="_blank"
                 rel="noopener noreferrer"
+                class="contact-card github"
             >
-                Telegram
-                <span>↗</span>
+                <div class="contact-icon">⌘</div>
+
+                <div class="contact-text">
+                    <strong>GitHub</strong>
+                    <span>@AmirabbasAbachiDev</span>
+                </div>
+
+                <span class="contact-arrow">↗</span>
             </a>
 
         </div>
@@ -644,6 +705,37 @@
 
 </footer>
 
+    <script>
+        /* Scroll Progress */
+        const progress = document.getElementById("scrollProgress");
 
+        function updateProgress() {
+            const h = document.documentElement;
+            const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            if (progress) progress.style.width = scrolled + "%";
+        }
+
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+
+        /* Active nav link based on section */
+        const sections = ["work", "skills", "contact"];
+        const navLinks = document.querySelectorAll(".nav-center a");
+
+        function setActive() {
+            let current = "";
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && window.scrollY >= el.offsetTop - 200) current = id;
+            });
+
+            navLinks.forEach(link => {
+                link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+            });
+        }
+
+        window.addEventListener("scroll", setActive, { passive: true });
+        setActive();
+    </script>
 </body>
 </html>
