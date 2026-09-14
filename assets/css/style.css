@@ -3234,3 +3234,56 @@ footer a:hover {
     }
 
 }
+
+
+@media (max-width: 768px) {
+  .detail-page,
+  .details-page,
+  .product-detail,
+  .detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+  }
+
+  .detail-page .image,
+  .detail-page .image-wrapper,
+  .detail-page .poster,
+  .detail-page .thumbnail,
+  .detail-page img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .detail-page .content,
+  .detail-page .info,
+  .detail-page .details,
+  .detail-page .description {
+    width: 100%;
+    max-width: 100%;
+    text-align: right;
+    direction: rtl;
+  }
+
+  .detail-page h1,
+  .detail-page h2,
+  .detail-page p {
+    width: 100%;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  .detail-page .row,
+  .detail-page .grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
